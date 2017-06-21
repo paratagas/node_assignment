@@ -1,0 +1,121 @@
+<script>
+    webix.ui({
+        rows:[
+            {
+                view: "template",
+                type: "header",
+                template: "Reviews"
+            },
+            {
+                view: "datatable",
+                id: "ratings",
+                tooltip: true,
+                scroll: "xy",
+                editable: true,
+                columns: [
+                    {
+                        id:"title",
+                        header: "Title",
+                        width: 250,
+                        editor:"text",
+                        tooltip: "Field is editable"
+                    },
+                    {
+                        id: "traveledWith",
+                        header:[
+                            "Traveled with",
+                            {
+                                content: "textFilter"
+                            }
+                        ],
+                        tooltip: "Fill the \"Title\" header text input to filter",
+                        width: 120
+                    },
+                    {
+                        id: "travelDate",
+                        header: "Travel date",
+                        sort: "date",
+                        tooltip: "To sort by \"Travel date\" click \"Travel date\" header",
+                        format: webix.Date.dateToStr("%Y-%m-%d")
+                    },
+                    {
+                        id: "reviewDate",
+                        header: "Review date",
+                        format: webix.Date.dateToStr("%Y-%m-%d")
+                    },
+                    {
+                        id: "userName",
+                        header: "User name",
+                        width: 200
+                    },
+                    {
+                        id: "averageGeneralRating",
+                        header: "Average general rating",
+                        width: 200
+                    },
+                    {
+                        id: "averageAspectsRating",
+                        header: "Average aspects rating",
+                        width: 200
+                    },
+                    {
+                        id: "reviewWeightValue",
+                        header: "Review weight value",
+                        width: 200
+                    },
+                    {
+                        id: "reviewText",
+                        header: "Review text",
+                        width: 200,
+                        editor:"text",
+                        tooltip: "Field is editable",
+                        adjust: true
+                    }
+                ],
+                url: "/api_data/reviews",
+                pager: {
+                    template: "{common.first()} {common.prev()} {common.pages()} {common.next()} {common.last()}",
+                    size: 10, // the number of records per a page
+                    group: 3 // the number of pages in the pager
+                }
+            },
+            {height: 20},
+            {
+                view: "datatable",
+                id: "typesOfTravellers",
+                tooltip: true,
+                scroll: "xy",
+                editable: true,
+                columns: [
+                    {
+                        id:"travellerType",
+                        header:[
+                            "Traveller type",
+                            {
+                                content: "textFilter"
+                            }
+                        ],
+                        tooltip: "Fill the \"Traveller type\" header text input to filter",
+                        width: 200
+                    },
+                    {
+                        id: "travellerTypeAverageGeneralRating",
+                        header: "Traveller type average general rating",
+                        sort: "int",
+                        tooltip: "To sort by \"Traveller type average general rating\" click \"Traveller type average general rating\" header",
+                        width: 300
+                    },
+                    {
+                        id: "travellerTypeAverageAspectsRating",
+                        header: "Traveller type average aspects rating",
+                        sort: "int",
+                        tooltip: "To sort by \"Traveller type average aspects rating\" click \"Traveller type average aspects rating\" header",
+                        width: 300
+                    }
+                ],
+                url: "/api_data/traveller_types"
+            },
+            {height: 50}
+        ]
+    });
+</script>
